@@ -4,13 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.practice.jetpack.testlab.R
 import com.practice.jetpack.testlab.model.Story
 import kotlinx.android.synthetic.main.item_story.view.*
 import kotlin.collections.ArrayList
-
 
 class StoriesListAdapter(val context : Context) : RecyclerView.Adapter<StoriesItemViewHolder>(){
 
@@ -25,21 +25,15 @@ class StoriesListAdapter(val context : Context) : RecyclerView.Adapter<StoriesIt
         notifyDataSetChanged()
     }
 
-    fun addMyStory(story : Story){
-        storyList.add(story)
-        notifyDataSetChanged()
-    }
-
     fun addMyStories(stories : List<Story>){
-        var size = this.storyList.size
+        val size = this.storyList.size
         this.storyList.addAll(stories)
-        var sizeNew = this.storyList.size
+        val sizeNew = this.storyList.size
         notifyItemRangeChanged(size, sizeNew)
     }
 
     override fun getItemCount(): Int {
         return storyList.size
-//        return 400
     }
 
     override fun onBindViewHolder(holder: StoriesItemViewHolder, position: Int) {
@@ -47,14 +41,14 @@ class StoriesListAdapter(val context : Context) : RecyclerView.Adapter<StoriesIt
         holder.tvType.text = storyList.get(index = position).type
         holder.tvStoryUrl.text = storyList.get(index = position).url
 
-        holder.itemView.setOnClickListener(View.OnClickListener {
+        holder.itemView.setOnClickListener {
             it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(storyList.get(index = position).url, storyList.get(index = position).title))
-        })
+        }
     }
 }
 
 class StoriesItemViewHolder(view : View ):RecyclerView.ViewHolder(view){
-    val tvTitle = view.tv_title
-    val tvType = view.tv_type
-    val tvStoryUrl = view.tv_url
+    val tvTitle: TextView = view.tv_title
+    val tvType: TextView = view.tv_type
+    val tvStoryUrl: TextView = view.tv_url
 }

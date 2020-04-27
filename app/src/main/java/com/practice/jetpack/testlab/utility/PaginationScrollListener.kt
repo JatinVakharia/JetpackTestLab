@@ -7,11 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Pagination class to add more items to the list when reach the last item.
  */
 abstract class PaginationScrollListener
-/**
- * Supporting only LinearLayoutManager for now.
- *
- * @param layoutManager
- */
+
     (var layoutManager: LinearLayoutManager) : RecyclerView.OnScrollListener() {
 
     abstract fun isLastPage(): Boolean
@@ -28,7 +24,7 @@ abstract class PaginationScrollListener
         if (!isLoading() && !isLastPage()) {
             if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
                 loadMoreItems()
-            }//                    && totalItemCount >= ClothesFragment.itemsCount
+            }
         }
     }
     abstract fun loadMoreItems()

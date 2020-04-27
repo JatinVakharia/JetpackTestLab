@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.practice.jetpack.testlab.ui.login.LoginViewModel"/>
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/compound_margin">
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"/>
 
     <Switch
         android:id="@+id/theme_toggle"
@@ -14,20 +33,35 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/SwitchCustom"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/circle"
+        app:layout_constraintTop_toBottomOf="@id/theme_toggle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/logo" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
-        android:hint="Username"
+        android:hint="@string/username"
         app:layout_constraintBottom_toTopOf="@id/user_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:errorEnabled="true"
+        android:layout_marginBottom="20dp"
+        app:errorTextAppearance="@style/no_error_appearance">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:text="@={viewmodel.emailAddress}"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -35,19 +69,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
-        android:hint="Password"
+        android:hint="@string/password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp">
+        app:errorEnabled="true"
+        android:layout_marginTop="100dp"
+        app:errorTextAppearance="@style/no_error_appearance">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
+            android:text="@={viewmodel.password}"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,6 +95,11 @@
         app:layout_constraintTop_toBottomOf="@id/user_password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Login"/>
+        android:text="@string/login"
+        android:layout_marginTop="20dp"
+        android:enabled="@{viewmodel.dataValid}"
+        android:onClick="@{() -> viewmodel.onLoginClick()}"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

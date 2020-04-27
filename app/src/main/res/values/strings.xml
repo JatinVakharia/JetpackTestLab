@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">JetpackTestlab</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="logo">Logo</string>
+    <string name="detail_fragment">DetailFragment</string>
+    <string name="passwordHintSignUp">8 - 15 characters.\nAt least one number, one symbol and one lowercase and one uppercase</string>
+    <string name="emailNoValidHint">Must be a valid email address</string>
 </resources>

@@ -1,15 +1,12 @@
 package com.practice.jetpack.testlab.ui.detail
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.practice.jetpack.testlab.R
 import kotlinx.android.synthetic.main.detail_fragment.*
-import kotlinx.android.synthetic.main.item_story.*
 
 class DetailFragment : DialogFragment() {
 
@@ -20,7 +17,7 @@ class DetailFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(
-            DialogFragment.STYLE_NORMAL,
+            STYLE_NORMAL,
             R.style.FullScreenDialogStyle
         )
     }

@@ -1,6 +1,5 @@
 package com.practice.jetpack.testlab.api
 
-import com.practice.jetpack.testlab.model.AllStories
 import com.practice.jetpack.testlab.model.Story
 import io.reactivex.Single
 import retrofit2.http.GET
